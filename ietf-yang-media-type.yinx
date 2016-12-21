@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module name="ietf-yang-media-type"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:md="urn:ietf:params:xml:ns:yang:ietf-yang-media-type"
+        xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+  <namespace uri="urn:ietf:params:xml:ns:yang:ietf-yang-media-type"/>
+  <prefix value="ymt"/>
+  <organization>
+    <text>IETF NETMOD (NETCONF Data Modeling Language) Working Group</text>
+  </organization>
+  <contact>
+    <text>
+      <xi:include href=".tools/bplate/netmod-module.yinx"
+                  xpointer="xpointer(id('contact')/*)"/>
+      <h:p>
+        Editor:   Ladislav Lhotka<h:br/>
+                  &lt;mailto:lhotka@nic.cz&gt;
+      </h:p>
+    </text>
+  </contact>
+  <description>
+    <text>
+      <h:p>This module defines the 'media-type' extension that allow
+      for specifying media-type for markup that is used in arguments
+      of these YANG statements:</h:p>
+      <h:ul>
+	<h:li>contact</h:li>
+	<h:li>description</h:li>
+	<h:li>error-message</h:li>
+	<h:li>organization</h:li>
+	<h:li>reference</h:li>
+      </h:ul>
+      <xi:include href=".tools/bplate/netmod-module.yinx"
+                  xpointer="xpointer(id('desc')/*)"/>
+    </text>
+  </description>
+  <revision date="2016-12-21">
+    <description>
+      <text>Initial revision.</text>
+    </description>
+    <reference>
+      <text>
+	RFC XXXX: Using Markup in YANG Text Arguments
+      </text>
+    </reference>
+  </revision>
+</module>
