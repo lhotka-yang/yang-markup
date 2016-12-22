@@ -1,7 +1,7 @@
 I_D = draft-lhotka-netmod-yang-markup
 REVNO = 00
 DATE ?= $(shell date +%F)
-MODULES = ietf-yang-media-type
+MODULES = ietf-yang-text-media-type
 SUBMODULES =
 FIGURES =
 PYANG_OPTS =
