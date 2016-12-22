@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<module name="ietf-yang-media-type"
+<module name="ietf-yang-text-media-type"
         xmlns="urn:ietf:params:xml:ns:yang:yin:1"
-        xmlns:md="urn:ietf:params:xml:ns:yang:ietf-yang-media-type"
+        xmlns:md="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type"
         xmlns:h="http://www.w3.org/1999/xhtml"
-        xmlns:xi="http://www.w3.org/2001/XInclude">
-  <namespace uri="urn:ietf:params:xml:ns:yang:ietf-yang-media-type"/>
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:ymt="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type">
+  <namespace uri="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type"/>
   <prefix value="ymt"/>
   <organization>
     <text>IETF NETMOD (NETCONF Data Modeling Language) Working Group</text>
@@ -21,16 +22,10 @@
   </contact>
   <description>
     <text>
-      <h:p>This module defines the 'media-type' extension that allow
+      <h:p>This module defines the 'text-media-type' extension that allows
       for specifying media-type for markup that is used in arguments
-      of these YANG statements:</h:p>
-      <h:ul>
-	<h:li>contact</h:li>
-	<h:li>description</h:li>
-	<h:li>error-message</h:li>
-	<h:li>organization</h:li>
-	<h:li>reference</h:li>
-      </h:ul>
+      of these YANG statements: contact, description, error-message,
+      organization, and reference.</h:p>
       <xi:include href=".tools/bplate/netmod-module.yinx"
                   xpointer="xpointer(id('desc')/*)"/>
     </text>
@@ -45,4 +40,37 @@
       </text>
     </reference>
   </revision>
+
+  <ymt:text-media-type type="text/html"/>
+
+  <extension name="text-media-type">
+    <argument name="type"/>
+    <description>
+      <text>
+	<h:p>This extension allows for specifying a media type that is
+	used for markup in the arguments of the following YANG
+	statements:</h:p>
+	<h:ul>
+	  <h:li>contact</h:li>
+	  <h:li>description</h:li>
+	  <h:li>error-message</h:li>
+	  <h:li>organization</h:li>
+	  <h:li>reference</h:li>
+	</h:ul>
+	<h:p>The 'text-media-type' extension statement may be used at
+	the top level of a module or submodule, i.e., as a
+	substatement of 'module' or 'submodule'. The declared media
+	type applies throughout the module or submodule.</h:p>
+	<h:p>The argument MUST be a media type registered by IANA and its
+	type MUST be 'text'. Parameters MAY be present.</h:p>
+	<h:p>This YANG extension is only indicative and optional to
+	implement. Tools MAY ignore it completely or implement just a
+	subset of markup directives that are available for a given
+	media type.</h:p>
+	<h:p>It is therefore RECOMMENDED to use only media types
+	representing 'lightweight' markup that is easy to read even in
+	the source form, such as 'text/markdown'.</h:p>
+      </text>
+    </description>
+  </extension>
 </module>
