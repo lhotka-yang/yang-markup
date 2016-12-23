@@ -34,43 +34,132 @@
     &netmod-wg;
 
     <abstract>
-      <t></t>
+      <t>This document defines a YANG extension that allows for
+      specifying a media type for text in the arguments of these YANG
+      statements: "contact", "description", "error-message",
+      "organization" and "reference."</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="introduction" title="Introduction">
-      <t>
-      </t>
+      <t>Descriptions play an important role in YANG data models. They
+      may specify normative semantic constraints that cannot be
+      expressed formally, instructions for implementors of the data
+      model, and other vital information. That is why descriptions
+      often comprise several paragraphs of text and sometimes also
+      other structures such all numbered or bulleted lists.</t>
+      <t>So far, YANG modules have mostly used only plain text in the
+      argument of the "description" statement, i.e., formatted text
+      structures using just whitespace. This is generally sufficient
+      for human readers and also for including YANG modules in RFC
+      documents, but less so for tools that are designed to process or
+      use YANG modules in other ways, for example:
+      <list style="symbols">
+	<t>converting YANG compact syntax to other formats (YIN, HTML)</t>
+	<t>including YANG modules in standards and other documents
+	that are not written as plain text</t>
+	<t>including description text in user interface elements.</t>
+      </list></t>
+      <t>The above considerations also apply, albeit to a lesser
+      extent, to other YANG statements with more structured arguments:
+      "contact", "error-message", "organization" and "reference".</t>
+      <t>In principle, it is possible to use any kind of markup such
+      as markdown <xref target="RFC7764"/> but doing so would not be
+      not very effective and tool-friendly unless the markup format is
+      either standardized or declared in the module source.</t>
+      <t>This document defines a YANG extension that allows for
+      indicating a media type that is used for markup in the arguments
+      of five YANG statements mentioned above.</t>
+    </section>
 
-      <!-- Figures are included like this (entity name = file name):
+    <section title="Terminology">
+      &kw-2119;
+    </section>
 
-      <figure>
-	&foo-model.tree;
-      </figure>
+    <section title="Declaring the Media Type of Text Arguments">
 
-      Files with figures and YANG modules (see below) should not
-      contain the <artwork> element - it is added automatically. 
-      -->
-
+      <t><xref target="yang"/> below contains the
+      "ietf-yang-text-media-type" module that defines one YANG
+      language extension: "text-media-type". Its purpose is to declare
+      media type that is used for markup in the arguments of the
+      following YANG statements:
+      <list style="symbols">
+	<t>contact</t>
+	<t>description</t>
+	<t>error-message</t>
+	<t>organization</t>
+	<t>reference</t>
+      </list>
+      The common characteristic of these five statements is that their
+      argument is represented as the &lt;text&gt; element in YIN
+      format (Section 13 of <xref target="RFC7950"/>).</t>
+      <t>The "text-media-type" extension is intended to be used at the
+      top level of a YANG module or submodule, i.e., as a substatement
+      of either "module" or "submodule" statement. The declared media
+      type applies to arguments of the above YANG statements
+      throughout the module or submodule.</t>
+      <t>The argument of the "text-media-type" extension is a string
+      specifying the media type in the format defined in <xref
+      target="RFC6838"/>. The media type MUST be registered by IANA in
+      the "text" registry <xref target="IANA-MEDIA-TYPES"/>. Media
+      type parameters MAY be used.</t>
+      <t>It is RECOMMENDED to use only media types representing
+      "lightweight" markup that is easy to read even in the
+      unprocessed source form, such as "text/markdown".</t>
+      <t>YANG modules have to be use the UTF-8 character encoding, see
+      Section 6 of <xref target="RFC7950"/>. This implies the
+      following rules:
+      <list style="symbols">
+	<t>Whenever the "charset" parameter is present, its value MUST
+	be "UTF-8".</t>
+	<t>If no default value is defined for the "charset" parameter
+	of a given media type, or if a default value is defined but is
+	different from "UTF-8", then the "charset" parameter MUST be
+	present with the value of "UTF-8".</t>
+      </list></t>
+      <t>Even if the "text-media-type" extension statement is present
+      and markup used in text arguments, all YANG and YIN syntax rules
+      still apply.</t>
+      <t>The "ietf-yang-text-media-type" module not only defines but
+      also uses the "text-media-type" extension statement.</t>
     </section>
 
     <section anchor="yang" title="YANG Module">
 
-      <t></t>
-
-      <!-- YANG modules are included this way:
+      &ed-hint-fill-in;
 
       <figure>
-	&ietf-foo.yang;
+	&ietf-yang-text-media-type.yang;
       </figure>
-
-      The <CODE BEGIN/END> delimiters are also added automatically.
-      -->
 
     </section>
 
     <section anchor="iana" title="IANA Considerations">
+      &ed-hint-fill-in;
+
+      <t>This document registers the following namespace URI in the "IETF XML registry"
+      <xref target="RFC3688"/>:</t>
+      <figure>
+        <artwork>
+URI: urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type
+Registrant Contact: The IESG.
+XML: N/A, the requested URI is an XML namespace.
+        </artwork>
+      </figure>
+
+      <t>This document registers the following YANG module in the "YANG Module
+      Names" registry <xref target="RFC6020"/>:</t>
+
+      <figure>
+        <artwork>
+Name:         ietf-yang-text-media-type
+Namespace:    urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type
+Prefix:       ymt
+Reference:    RFC XXXX
+        </artwork>
+      </figure>
+
       <t></t>
     </section>
 
@@ -83,21 +172,16 @@
 
   <back>
     <references title="Normative References">
+      <reference anchor="IANA-MEDIA-TYPES">
+	<front>
+	  <title>Media Types</title>
+	  <author>
+	    <organization>Internet Assigned Numbers Authority</organization>
+	  </author>
+	  <date day="21" month="12" year="2016"/>
+	</front>
+      </reference>
       &RFC2119;
-      <!-- Generate other references by "make refs",
-	   and add entity references here. -->
     </references>
-
-    <section anchor="rpc-example" title="Example: NETCONF &lt;get&gt; Reply">
-      <t></t>
-
-      <!-- Example XML documents can also be included in the same way:
-
-      <figure>
-	&example-get-reply.xml;
-      </figure>
-      -->
-
-    </section>
   </back>
 </rfc>

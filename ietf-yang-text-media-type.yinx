@@ -7,6 +7,7 @@
 	xmlns:ymt="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type">
   <namespace uri="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type"/>
   <prefix value="ymt"/>
+  <ymt:text-media-type type="text/html"/>
   <organization>
     <text>IETF NETMOD (NETCONF Data Modeling Language) Working Group</text>
   </organization>
@@ -22,10 +23,10 @@
   </contact>
   <description>
     <text>
-      <h:p>This module defines the 'text-media-type' extension that allows
-      for specifying media-type for markup that is used in arguments
-      of these YANG statements: contact, description, error-message,
-      organization, and reference.</h:p>
+      <h:p>This module defines the <h:em>text-media-type</h:em>
+      extension that allows for specifying media-type for markup that
+      is used in arguments of these YANG statements: contact,
+      description, error-message, organization, and reference.</h:p>
       <xi:include href=".tools/bplate/netmod-module.yinx"
                   xpointer="xpointer(id('desc')/*)"/>
     </text>
@@ -40,8 +41,6 @@
       </text>
     </reference>
   </revision>
-
-  <ymt:text-media-type type="text/html"/>
 
   <extension name="text-media-type">
     <argument name="type"/>
@@ -61,16 +60,24 @@
 	the top level of a module or submodule, i.e., as a
 	substatement of 'module' or 'submodule'. The declared media
 	type applies throughout the module or submodule.</h:p>
-	<h:p>The argument MUST be a media type registered by IANA and its
-	type MUST be 'text'. Parameters MAY be present.</h:p>
+	<h:p>The argument MUST be a media type registered by IANA in
+	the 'text' registry. Parameters MAY be present.</h:p>
 	<h:p>This YANG extension is only indicative and optional to
-	implement. Tools MAY ignore it completely or implement just a
+	implement. Tools MAY ignore it completely or support just a
 	subset of markup directives that are available for a given
 	media type.</h:p>
-	<h:p>It is therefore RECOMMENDED to use only media types
-	representing 'lightweight' markup that is easy to read even in
-	the source form, such as 'text/markdown'.</h:p>
       </text>
     </description>
+    <reference>
+      <text>
+	<h:ul>
+	  <h:li>'Media Types'. IANA, 2016-12-21. Available
+	  online:<h:br/>
+	  http://www.iana.org/assignments/media-types/media-types.xhtml</h:li>
+	  <h:li>RFC 6838: Media Type Specifications and Registration
+	  Procedures</h:li>
+	</h:ul>
+      </text>
+    </reference>
   </extension>
 </module>
