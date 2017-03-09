@@ -58,7 +58,7 @@
       <list style="symbols">
 	<t>converting YANG compact syntax to other formats (YIN, HTML)</t>
 	<t>including YANG modules in standards and other documents
-	that are not written as plain text</t>
+	whose source form in not plain text</t>
 	<t>including description text in user interface elements.</t>
       </list></t>
       <t>The above considerations also apply, albeit to a lesser
@@ -68,9 +68,11 @@
       as markdown <xref target="RFC7764"/> but doing so would not be
       not very effective and tool-friendly unless the markup format is
       either standardized or declared in the module source.</t>
-      <t>This document defines a YANG extension that allows for
-      indicating a media type that is used for markup in the arguments
-      of five YANG statements mentioned above.</t>
+      <t>This document defines a YANG extension statement,
+      "text-media-type", that can be placed as a substatement of the
+      "module" or "submodule" statement to indicate the media type
+      that is used throughout the (sub)module for markup in the
+      arguments of the five YANG statements mentioned above.</t>
     </section>
 
     <section title="Terminology">
@@ -80,10 +82,10 @@
     <section title="Declaring the Media Type of Text Arguments">
 
       <t><xref target="yang"/> below contains the
-      "ietf-yang-text-media-type" module that defines one YANG
-      language extension: "text-media-type". Its purpose is to declare
-      media type that is used for markup in the arguments of the
-      following YANG statements:
+      "ietf-yang-text-media-type" module that defines a YANG language
+      extension: "text-media-type". Its purpose is to declare media
+      type that is used for markup in the arguments of the following
+      YANG statements:
       <list style="symbols">
 	<t>contact</t>
 	<t>description</t>
@@ -99,9 +101,11 @@
       of either "module" or "submodule" statement. The declared media
       type applies to arguments of the above YANG statements
       throughout the module or submodule.</t>
+      <t>The "text-media-type" extension MAY be ignored, and a module
+      in which it appears MUST be valid YANG.</t>
       <t>The argument of the "text-media-type" extension is a string
       specifying the media type in the format defined in <xref
-      target="RFC6838"/>. The media type MUST be registered by IANA in
+      target="RFC6838"/>. The media type SHOULD be registered by IANA in
       the "text" registry <xref target="IANA-MEDIA-TYPES"/>. Media
       type parameters MAY be used.</t>
       <t>It is RECOMMENDED to use only media types representing
@@ -122,7 +126,8 @@
       and markup used in text arguments, all YANG and YIN syntax rules
       still apply.</t>
       <t>The "ietf-yang-text-media-type" module not only defines but
-      also uses the "text-media-type" extension statement.</t>
+      also uses the "text-media-type" extension statement, which
+      illustrates its typical use.</t>
     </section>
 
     <section anchor="yang" title="YANG Module">
@@ -164,7 +169,11 @@ Reference:    RFC XXXX
     </section>
 
     <section anchor="security" title="Security Considerations">
-      <t></t>
+      <t>The "text-media-type" extension defined in this document
+      provides information that is completely optional. YANG modules
+      and submodules in which it is present have to satisfy all rules
+      of the YANG language. The extension therefore doen't introduce
+      any new threats.</t>
 
     </section>
 
@@ -182,6 +191,13 @@ Reference:    RFC XXXX
 	</front>
       </reference>
       &RFC2119;
+      &RFC3688;
+      &RFC6020;
+      &RFC6838;
+      &RFC7950;
+    </references>
+    <references title="Informative References">
+      &RFC7764; 
     </references>
   </back>
 </rfc>
