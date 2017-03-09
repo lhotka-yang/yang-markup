@@ -111,7 +111,7 @@
       <t>It is RECOMMENDED to use only media types representing
       "lightweight" markup that is easy to read even in the
       unprocessed source form, such as "text/markdown".</t>
-      <t>YANG modules have to be use the UTF-8 character encoding, see
+      <t>YANG modules have to use the UTF-8 character encoding, see
       Section 6 of <xref target="RFC7950"/>. This implies the
       following rules:
       <list style="symbols">
